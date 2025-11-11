@@ -1,0 +1,1 @@
+export const SALES_PORTAL_URL = "http://localhost:8585/#";
