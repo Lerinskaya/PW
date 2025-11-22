@@ -13,3 +13,7 @@ export interface ITableRowData {
     manufacturer: MANUFACTURERS,
     price: number
 }
+
+export interface IProductDetails extends Required<IProduct> {
+    createdOn: string,
+}

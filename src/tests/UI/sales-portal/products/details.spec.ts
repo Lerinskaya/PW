@@ -1,18 +1,11 @@
-import test, { expect } from "@playwright/test";
-import { HomePage } from "ui/pages/home.page";
-import { LoginPage } from "ui/pages/login.page";
-import { ProdustsListPage } from "ui/pages/products/productsList.page";
+import { test, expect } from "fixtures/pages.fixtures";
 import { credentials } from "data/credentials";
 import { NOTIFICATIONS } from "data/enums";
-import { AddNewProductPage } from "ui/pages/products/addNewProduct.page";
 import { generateProductData } from "data/products/productDataGenerator";
+import _ from "lodash";
 
-test.describe("[Sales Portal][Products]", () => {
-    test("Add new product", async ({page}) => {
-        const loginPage = new LoginPage(page);
-        const homePage = new HomePage(page);
-        const productsListPage = new ProdustsListPage(page);
-        const addNewProductPage = new AddNewProductPage(page);
+test.describe("[Sales Portal][Products][Open Details]", () => {
+    test("Open product details", async ({ loginPage, homePage, productsListPage, addNewProductPage}) => {
         const productData = generateProductData();
         
         await loginPage.open();
@@ -31,5 +24,13 @@ test.describe("[Sales Portal][Products]", () => {
         expect(firstRow.name).toEqual(productData.name);
         expect(firstRow.price).toEqual(productData.price);
         expect(firstRow.manufacturer).toEqual(productData.manufacturer);
+
+        await productsListPage.detailsButton(productData.name).click();
+        
+        const { detailsModal } = productsListPage;
+        await detailsModal.waitForPageOpened();
+        const actualModalData = await detailsModal.getData();
+        expect(_.omit(actualModalData, ["createdOn"])).toEqual(productData);
+
     });
 })
