@@ -1,1 +1,1 @@
-export const SALES_PORTAL_URL = "http://localhost:8585/#";
+export const SALES_PORTAL_URL = process.env.SALES_PORTAL_URL!;

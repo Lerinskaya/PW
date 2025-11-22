@@ -11,4 +11,5 @@ export enum MANUFACTURERS {
 
 export enum NOTIFICATIONS {
     PRODUCT_ADDED_MESSAGE = "Product was successfully created",
+    PRODUCT_DELETED_MESSAGE = "Product was successfully deleted"
 }
