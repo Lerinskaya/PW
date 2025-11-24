@@ -16,7 +16,7 @@ export class AddNewProductPage extends SalesPortalPage {
         if(productData.manufacturer) await this.manufacturerSelect.selectOption(productData.manufacturer);
         if(productData.price) await this.priceInput.fill(productData.price.toString());
         if(productData.amount) await this.amountInput.fill(productData.amount.toString());
-        if(productData.note) await this.noteInput.fill(productData.note);    
+        if(productData.notes) await this.noteInput.fill(productData.notes);    
     }
     
     async clickSaveButton() {

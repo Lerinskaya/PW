@@ -31,7 +31,7 @@ export class DetailsModal extends SalesPortalPage{
             price: +price!.replace("$",""),
             manufacturer: manufacturer! as MANUFACTURERS,
             createdOn: createdOn!,
-            note: note! === "-" ? "" : note!
+            notes: note! === "-" ? "" : note!
         };
     }
 }
